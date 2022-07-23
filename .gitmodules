@@ -2,7 +2,7 @@
 	path = t_cose
 	url = https://github.com/laurencelundblade/t_cose.git
 [submodule "QCBOR"]
-	path = QCBOR
+	path = external/QCBOR
 	url = https://github.com/laurencelundblade/QCBOR.git
 [submodule "mbedtls"]
 	path = external/mbedtls
