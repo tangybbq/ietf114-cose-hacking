@@ -1,5 +1,5 @@
 [submodule "t_cose"]
-	path = t_cose
+	path = external/t_cose
 	url = https://github.com/laurencelundblade/t_cose.git
 [submodule "QCBOR"]
 	path = external/QCBOR
