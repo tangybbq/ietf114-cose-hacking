@@ -14,6 +14,7 @@ project(ietf114_hacking
 
 set(CMAKE_C_FLAGS "-Wall -O3 -pedantic")
 
+######################################################################
 # Set up Mbed TLS
 option(USE_PKCS11_HELPER_LIBRARY "Build mbed TLS with the pkcs11-helper library." OFF)
 option(ENABLE_ZLIB_SUPPORT "Build mbed TLS with zlib library." OFF)
@@ -36,5 +37,13 @@ endif()
 set(MBEDTLS_LIBRARIES "mbedtls") #  "mbedx509" "mbedcrypto"
 
 add_subdirectory(external/mbedtls mbedtls)
+
+######################################################################
+# Setup QCBOR
+
+add_subdirectory(external/QCBOR qcbor)
+set(QCBOR_LIBRARY "qcbor")
+set(MBEDTLS True)
+include_directories(externalQCBOR/inc)
 
 add_executable(encrypter src/main.c)
