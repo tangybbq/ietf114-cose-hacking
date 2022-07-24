@@ -7,6 +7,7 @@ let
     gnumake
     cmake
     ninja
+    ctags
   ];
 in
 pkgs.mkShell {
