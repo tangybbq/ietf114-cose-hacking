@@ -43,7 +43,36 @@ add_subdirectory(external/mbedtls mbedtls)
 
 add_subdirectory(external/QCBOR qcbor)
 set(QCBOR_LIBRARY "qcbor")
+set(CRYPTO_PROVIDER "MbedTLS")
 set(MBEDTLS True)
-include_directories(externalQCBOR/inc)
+include_directories(external/QCBOR/inc)
 
-add_executable(encrypter src/main.c)
+######################################################################
+# Setup t_cose
+
+# add_subdirectory(external/t_cose t_cose)
+set(T_COSE_LIBRARY "t_cose")
+# include_directories(external/QCBOR/inc)
+include_directories(external/t_cose/inc)
+include_directories(external/t_cose/src)
+
+add_definitions(-DT_COSE_USE_PSA_CRYPTO)
+
+# Make our own library for t_cose.
+add_library(t_cose
+    external/t_cose/src/t_cose_aes_kw.c
+    external/t_cose/src/t_cose_encrypt_dec.c
+    external/t_cose/src/t_cose_encrypt_enc.c
+    external/t_cose/src/t_cose_hpke.c
+    external/t_cose/src/t_cose_parameters.c
+    external/t_cose/src/t_cose_sign1_sign.c
+    external/t_cose/src/t_cose_sign1_verify.c
+    external/t_cose/src/t_cose_util.c
+    external/t_cose/crypto_adapters/t_cose_psa_crypto.c)
+
+######################################################################
+add_executable(encrypter
+    src/main.c
+    src/pdump.c
+    )
+target_link_libraries(encrypter mbedtls t_cose qcbor)
