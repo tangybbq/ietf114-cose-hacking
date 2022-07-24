@@ -12,7 +12,7 @@ project(ietf114_hacking
     LANGUAGES C
     VERSION 1.0.0)
 
-set(CMAKE_C_FLAGS "-Wall -O3 -pedantic")
+#set(CMAKE_C_FLAGS "-Wall -O3 -pedantic")
 
 ######################################################################
 # Set up Mbed TLS
